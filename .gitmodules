@@ -1,0 +1,6 @@
+[submodule "my_transformer"]
+	path = my_transformer
+	url = git@github.com:syuuuuukun/my_transformer.git
+[submodule "app/transformer"]
+	path = app/transformer
+	url = git@github.com:syuuuuukun/my_transformer.git
