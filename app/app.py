@@ -1,8 +1,14 @@
 #Flaskとrender_template（HTMLを表示させるための関数）をインポート
 from flask import Flask,render_template, request
 import sys
+<<<<<<< Updated upstream
 sys.path.append("./transformer/translate/")
 from translate import Predicter
+=======
+import os
+sys.path.append("./transformer/translate/")
+from .translate import Predicter
+>>>>>>> Stashed changes
 #Flaskオブジェクトの生成
 app = Flask(__name__)
 
@@ -31,4 +37,5 @@ def index():
 
 #おまじない
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
