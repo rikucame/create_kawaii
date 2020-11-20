@@ -1,14 +1,9 @@
 #Flaskとrender_template（HTMLを表示させるための関数）をインポート
 from flask import Flask,render_template, request
 import sys
-<<<<<<< Updated upstream
-sys.path.append("./transformer/translate/")
-from translate import Predicter
-=======
 import os
-sys.path.append("./transformer/translate/")
-from .translate import Predicter
->>>>>>> Stashed changes
+sys.path.append("./app/transformer/translate/")
+from predict import Predicter
 #Flaskオブジェクトの生成
 app = Flask(__name__)
 
