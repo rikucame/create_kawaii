@@ -2,13 +2,13 @@
 from flask import Flask,render_template, request
 import sys
 import os
-sys.path.append("./app/transformer/translate/")
+sys.path.append("./transformer/translate/")
 from predict import Predicter
 #Flaskオブジェクトの生成
 app = Flask(__name__)
 
-weight = "./app/model_result_0033001iteration.pt"
-sp = "./app/en_ja_8000.model"
+weight = "./model_result_0033001iteration.pt"
+sp = "./en_ja_8000.model"
 test = Predicter(weight_path=weight, sp_path=sp)
 
 #「/」へアクセスがあった場合に、"Hello World"の文字列を返す
