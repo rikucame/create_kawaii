@@ -1,6 +1,3 @@
-[submodule "transformer"]
-	path = transformer
-	url = git://github.com/syuuuuukun/my_transformer.git
 [submodule "transfomer"]
 	path = transfomer
 	url = git://github.com/syuuuuukun/my_transformer.git
