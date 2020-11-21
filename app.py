@@ -1,13 +1,14 @@
 #Flaskとrender_template（HTMLを表示させるための関数）をインポート
 from flask import Flask,render_template, request
 import sys
-sys.path.append("./app/transformer/translate/")
+import os
+sys.path.append("./transformer/translate/")
 from predict import Predicter
 #Flaskオブジェクトの生成
 app = Flask(__name__)
 
-weight = "./app/model_result_0033001iteration.pt"
-sp = "./app/en_ja_8000.model"
+weight = "./model_result_0033001iteration.pt"
+sp = "./en_ja_8000.model"
 test = Predicter(weight_path=weight, sp_path=sp)
 
 #「/」へアクセスがあった場合に、"Hello World"の文字列を返す
@@ -31,4 +32,5 @@ def index():
 
 #おまじない
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
