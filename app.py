@@ -1,7 +1,7 @@
 #Flaskとrender_template（HTMLを表示させるための関数）をインポート
 from flask import Flask,render_template, request
 import os
-from translater import Predicter
+from translater.predict import Predicter
 # from transfomer import Predicter
 #Flaskオブジェクトの生成
 app = Flask(__name__)
