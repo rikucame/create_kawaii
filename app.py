@@ -1,25 +1,40 @@
 #Flaskとrender_template（HTMLを表示させるための関数）をインポート
 from flask import Flask,render_template, request
 import os
-from translater.predict import Predicter
-# from transfomer import Predicter
+from PIL import Image
+import torch
+from gan_model.model import Generator
+from gan_model.generator import generate
+
 #Flaskオブジェクトの生成
 app = Flask(__name__)
 
-weight = "./best_model.pt"
-sp = "./tokenizer.model"
-test = Predicter(dim=512,head_num=8,layer_num=4,pad_id=32000,seq_len=128,weight_path=weight, sp_path=sp)
+latent = 512
+n_mlp = 8
+size = 512
+weight_path = "./170000_e-ema.pt"
+device = "cpu"
+truncation_mean = 0.8
+
+g_ema = Generator(size, latent, n_mlp, channel_multiplier=2)
+
+g_ema.load_state_dict(torch.load(weight_path))
+g_ema = g_ema.to(device)
+
+with torch.no_grad():
+    mean_latent = g_ema.mean_latent(truncation_mean)
 
 #「/」へアクセスがあった場合に、"Hello World"の文字列を返す
 @app.route("/", methods=["GET", "POST"])
 def hello():
-    input = ""
-    if(request.form.get("input")):
-        input = request.form.get("input")
+    if(request.form.get("input")) is None:
+        input = "生成してません"
     else :
-        input = "メガネ"
-    output = test.predict(input+".")
-    return render_template("index.html", input=input, output=output)
+        input = "生成してます"
+        sample = generate(g_ema, device, mean_latent)
+        Image.fromarray(sample).save("./outputs/test.png")
+
+    return render_template("index.html", input=input)
 
 #「/index」へアクセスがあった場合に、「index.html」を返す
 @app.route("/index")
