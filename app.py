@@ -14,7 +14,7 @@ n_mlp = 8
 size = 512
 weight_path = "./pretrained_weight.pt"
 device = "cpu"
-truncation_mean = 0.8
+truncation_mean = 4096
 
 g_ema = Generator(size, latent, n_mlp, channel_multiplier=2)
 
