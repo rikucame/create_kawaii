@@ -7,12 +7,12 @@ from gan_model.model import Generator
 from gan_model.generator import generate
 
 #Flaskオブジェクトの生成
-app = Flask(__name__)
+app = Flask(__name__,static="./outputs/")
 
 latent = 512
 n_mlp = 8
 size = 512
-weight_path = "./170000_e-ema.pt"
+weight_path = "./pretrained_weight.pt"
 device = "cpu"
 truncation_mean = 0.8
 
