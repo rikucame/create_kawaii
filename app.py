@@ -7,7 +7,7 @@ from gan_model.model import Generator
 from gan_model.generator import generate
 
 #Flaskオブジェクトの生成
-app = Flask(__name__,static="./outputs/")
+app = Flask(__name__,static_folder="./outputs/")
 
 latent = 512
 n_mlp = 8
