@@ -3,3 +3,4 @@ numpy==1.18.1
 sentencepiece==0.1.85
 --find-links https://download.pytorch.org/whl/torch_stable.html
 torch==1.4.0+cpu
+gunicorn==20.0.4
