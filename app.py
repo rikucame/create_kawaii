@@ -20,8 +20,6 @@ def hello():
         input = "メガネ"
     output = test.predict(input+".")
     return render_template("index.html", input=input, output=output)
-    
-
 
 #「/index」へアクセスがあった場合に、「index.html」を返す
 @app.route("/index")

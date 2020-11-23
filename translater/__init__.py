@@ -1,1 +1,0 @@
-from translater import predict
