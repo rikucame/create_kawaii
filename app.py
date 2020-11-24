@@ -35,7 +35,7 @@ def hello():
     else :
         input = "生成してます"
         sample = generate(g_ema, device, mean_latent)
-        Image.fromarray(sample).save(f'./outputs/generate_{rand}.png')
+        Image.fromarray(sample).save(f'./static/outputs/generate_{rand}.png')
         file_name = f'generate_{rand}.png'
 
     return render_template("index.html", input=input, file_name=file_name)
